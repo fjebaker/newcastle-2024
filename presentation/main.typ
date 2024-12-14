@@ -127,12 +127,20 @@
   #grid(columns: (62%, 1fr),
     [
       Used extensively in *computer graphics*
-
       #v(0.5em)
       Also used extensively in *science*:
       - *Instrument design*, for simulating detector efficiency
       - *Radiative transfer*, including extinctions
       - For calculating *atmospheric effects*
+
+      #{
+        set align(center)
+        set text(size: 15pt)
+        figure(
+          image("./figs/peterson-et-al-fig2.jpg"),
+          caption: [Hello]
+        )
+      }
     ],
     [
       #set text(size: 15pt)
@@ -147,7 +155,7 @@
 
   #v(1fr)
   #align(center, cbox(fill: PRIMARY_COLOR, text(fill: SECONDARY_COLOR)[
-    In *astronomy*, for *observation simulation* and *gravitational lensing*.
+    In *astronomy*: e.g. *observation simulation* or *gravitational lensing*.
   ]))
 ]
 
@@ -198,7 +206,7 @@
 
 #slide(title: "Putting together the machinery")[
   #set text(size: 15pt)
-  #grid(columns: (70%, 1fr),
+  #grid(columns: (68%, 1fr),
     [
       #figure(
         image("./figs/geodesic-paths.svg", width: 100%),
@@ -246,9 +254,76 @@
 #slide(title: "The shadow of a black hole")[
   show shadow for schwarzschild and kerr solutions: coordinate time
   - show code example with the point function
+  #grid(columns: (68%, 1fr),
+    [
+      #set text(size: 15pt)
+      #figure(
+        image("./figs/shadows.png", width: 100%),
+        caption: [Hello],
+      )
+    ],
+    [
+      #set text(size: 15pt)
+      Construct a grid of *impact parameters*, a pair for each pixel:
+      #v(1em)
+      ```julia
+      pf = PointFunction(
+        (m, p, tau) -> p.x[1]
+      )
+
+      # evaluate point function
+      # for each geodesic
+      α, β, img = rendergeodesics(
+          m,
+          observer,
+          # max integration time
+          20_000.0,
+          image_width = 800,
+          image_height = 800,
+          pf = pf,
+          αlims = (-6, 6),
+          βlims = (-6, 6),
+      )
+      ```
+    ])
 ]
 
 #slide(title: "2. Toy accretion models")[
+  #set text(size: 15pt)
+  #grid(columns: (68%, 1fr),
+    {
+      figure(
+        image("./figs/thin-disc-projection.png", width: 100%),
+        caption: [TODO]
+      )
+    },
+    [
+      An *infinitely thin* disc model in the equatorial plane:
+      #v(1em)
+      ```julia
+      d = ThinDisc(Gradus.isco(m), 20.0)
+      # only those that intersect the disc
+      pf = PointFunction(
+        (m, p, t) -> p.x[1]
+      ) ∘ filter_intersected()
+
+      α, β, img = rendergeodesics(
+          m,
+          observer,
+          d,
+          # maximum integration time
+          20_000.0,
+          βlims = (-13, 14),
+          αlims = (-23, 23),
+          image_width = 1080,
+          image_height = 720,
+          pf = pf,
+      )
+      ```
+
+    ]
+  )
+
   (also include code example)
   put an infinitely thin disc around the black hole
   Talk about the projection effects and the light travel times
@@ -259,10 +334,21 @@
   Bright ring feature
 
   #set text(size: 12pt)
-  #figure(
-    image("./figs/m-von-laue-1921.png", height: 60%),
-    caption: [M. Von Laue, 1921]
-    // https://archive.org/details/dierelativitts02laueuoft/page/226/mode/2up
+  #grid(columns: (63%, 1fr),
+  [
+
+    #figure(
+      image("./figs/photon-ring-paths.svg", width: 60%),
+      caption: [TODO]
+    )
+  ],
+  [
+    #set align(center)
+    #figure(
+      image("./figs/m-von-laue-1921.png", height: 60%),
+      caption: [#link("https://archive.org/details/dierelativitts02laueuoft/page/226/mode/2up")[M. Von Laue], 1921]
+    )
+  ]
   )
 
   include EHT images
