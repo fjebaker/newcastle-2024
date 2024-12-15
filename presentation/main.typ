@@ -1,6 +1,6 @@
 #import "tamburlaine.typ": *
 
-#let HANDOUT_MODE = false
+#let HANDOUT_MODE = true
 #enable-handout-mode(HANDOUT_MODE)
 
 #show figure.caption: c => block(width: 80%)[
@@ -330,28 +330,47 @@
 ]
 
 #slide(title: "Aside: the photon ring")[
-  at one particular radius the geodesics can wrap around the black hole several times
-  Bright ring feature
 
-  #set text(size: 12pt)
-  #grid(columns: (63%, 1fr),
+  #grid(columns: (68%, 1fr),
+  column-gutter: 20pt,
   [
-
-    #figure(
-      image("./figs/photon-ring-paths.svg", width: 60%),
-      caption: [TODO]
-    )
+    *Winding* of geodesics around the black hole:
+    #{
+      set text(size: 15pt)
+      grid(columns: (55%, 1fr),
+        figure(
+          image("./figs/photon-ring-schwarzschild.svg", width: 100%),
+          gap: 0pt,
+          caption: [Photons rings of the equatorial plane.]
+        ),
+        [
+          #v(2.0em)
+          #figure(
+            image("./figs/eht-m87-image.jpg", width: 90%),
+            caption: [M87\*, imaged by the Event Horizon Telescope CC BY 4.0],
+          )
+          #v(1em)
+        ]
+      )
+    }
+    #v(1em)
+    Bright central ring in EHT images is the *photon ring*.
   ],
   [
+    #set text(size: 15pt)
     #set align(center)
+    #move(dy: -10pt, figure(
+      image("./figs/m-von-laue-1921.png", width: 90%),
+      caption: [#link("https://archive.org/details/dierelativitts02laueuoft/page/226/mode/2up")[M. von Laue], 1921]
+    ))
+    #v(-10pt)
     #figure(
-      image("./figs/m-von-laue-1921.png", height: 60%),
-      caption: [#link("https://archive.org/details/dierelativitts02laueuoft/page/226/mode/2up")[M. Von Laue], 1921]
+      move(dx: -15pt, image("./figs/photon-ring-paths.svg", width: 100%)),
+      gap: 0pt,
+      caption: [After\ M. von Laue, 2024]
     )
   ]
   )
-
-  include EHT images
 ]
 
 #slide(title: "Calculating observables")[
@@ -362,13 +381,20 @@
   show redshift histograms
 ]
 
-#slide(title: "Novikov-Thorne")[
+#slide(title: "Page & Thorne")[
+  A "simple" model for *temperature* and *flux* from a *Novikov-Thorne* accretion disc.
   - an example of how we can calculate the flux of the disc at different radii
   using a black body emission model
 ]
 
 #subtitle-slide(bg: TEXT_COLOR)[
-  Our version of Luminet
+  #set text(size: 15pt)
+  #figure(
+    image("./figs/our-version-of-luminet.png"),
+    caption: [Schwarzschild black hole with Page & Thorne accretion disc,\ after J-P. Luminet, 2024],
+  )
+
+  // the titular bright side of a black hole
 ]
 
 #subtitle-slide[
@@ -382,10 +408,47 @@
   We have our basic accretion disc model, and now we add the corona
   - some theories as to how it forms
   - illuminates the system in high energy X-rays
+
+  - Thought to be formed through threaded *magnetic fields*
+  - Super-heated electron plasma\ $T ~ 10^9$K
+
+  - *Seed-photons* from the disc are *Compton upscattered* to higher energies
 ]
 
 #slide(title: [Preview: The _lamppost_ model])[
+  #set text(size: 15pt)
+  #grid(columns: (60%, 1fr),
+    {
+      set align(horizon)
+      only-last-handout(
+        figure(
+          image("./figs/lp-2.png", width: 95%),
+          caption: [A literal lamppost corona.]
+        ),
+        figure(
+          image("./figs/lp-3.png", width: 95%),
+          caption: [A literal lamppost corona is observed *together* with the disc.]
+        ),
+        handout: HANDOUT_MODE
+      )
+    },
+    [
+      #set text(size: 20pt)
+      Single *point-like* source on the *spin axis* of the black hole:
+      - Only "free parameter" is the *height above the disc* $h$
 
+      #v(1em)
+      When we observe the system:
+      - Hard *direct emission* from the corona
+      - Softer *reflected emission* from the disc
+      - Can only be *observed in ensemble*
+
+      #v(1em)
+      But...
+      - Spectra can be *modelled independently*
+    ]
+  )
+  // mention something about light crossing time
 ]
 
 #slide(title: "Reflected emission")[
@@ -454,7 +517,7 @@
   - https://astro-group-bristol.github.io/Gradus.jl/
   #v(0.5em)
   Source for slides and figures:
-  - https://github.com/fjebaker/new-results-in-xray-2024
+  - https://github.com/fjebaker/newcastle-2024
   #v(0.5em)
   #align(right)[
   Contact: \

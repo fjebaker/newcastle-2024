@@ -162,4 +162,23 @@
   }
 }
 
+#let only-last-handout(..blocks, fig: false, handout: false) = {
+  if handout == true {
+    blocks.at(-1)
+  } else {
+    let output = ()
+    context {
+      let fig_count = counter(figure).get().last()
+      for blk in blocks.pos().enumerate() {
+         let (i, b) = blk
+         [
+           #counter(figure).update(fig_count)
+           #only(i+1, b)
+         ]
+      }
+    }
+    output.join()
+  }
+}
+
 #let cbox(content, ..args) = rect(radius: 3pt, outset: 5pt, ..args, content)
