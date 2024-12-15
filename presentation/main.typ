@@ -32,10 +32,12 @@
   #align(right)[#image.decode(uob_logo, width: 20%)]
 ]
 
-#slide(title: "Take home message")[
+#slide(title: "Take home messages")[
   #text(size: 40pt)[
-    #v(3em)
-    Including general relativistic effects is _easier_ than you'd think #text(size: 28pt)[_thanks to ray-tracing_].
+    #v(2em)
+    1. Including *general relativistic* effects is _easier_ than you'd think #text(size: 28pt)[_thanks to ray-tracing_].
+    \
+    2. We need to move past the simple black hole *accretion disc* and *corona models*.
   ]
 ]
 
@@ -213,7 +215,9 @@
         caption: [Geodesics traces from asymptotic observers for different spacetimes.]
       )
 
-      todo: figure showing how we construct an image
+      TODO: figure showing how we construct an image
+      also something about constants of motion $E$, $Q$, $L_z$
+
     ],
     [
       ```julia
@@ -244,7 +248,9 @@
       sols = tracegeodesics(
         m,
         observer,
-        init_vels
+        vs,
+        # max integration time
+        20_000,
       )
       ```
     ]
@@ -324,9 +330,8 @@
     ]
   )
 
-  (also include code example)
-  put an infinitely thin disc around the black hole
-  Talk about the projection effects and the light travel times
+  // Talk about the projection effects and the light travel times
+  // TODO: a slide with different observer inclinations and spins: "The observer changes how the disc is seen"
 ]
 
 #slide(title: "Aside: the photon ring")[
@@ -374,24 +379,104 @@
 ]
 
 #slide(title: "Calculating observables")[
-  The accretion disc is rotating around the black hole in Keplerian orbits. This means we can
-  calculate the relative energy shift due to Doppler effect, special relativity, and general relativity
+  Need to start making *assumptions* about the *astrophysics*:
+  - For simplicity, disc elements rotating on *Keplerian orbits*
+  - Emission within the *innermost stable circular orbit (ISCO)* are negligible
+  // this is physically motivated: at the ISCO, is the plunging region where there is no longer a viscous stress in the disc. Imagine differentially rotating slipping rings that grind against eachother and carry angular momentum. At the ISCO, the radial component cannot be zero, so it's like the rings start shrinking
+  // If the bulk of the radiation we see from the disc is from viscous / thermal processes, then within the ISCO there is nothing for us to see
 
-  show redshift maps
-  show redshift histograms
+  // TODO: quick figure showing how ISCO changes with spin, and what happens in the plunging region
+
+  Are these good assumptions? *Probably not...*
+
+  Ongoing debates about what happens within the ISCO
+  - Ongoing debate about the velocity structure of the discs
+
+  But you can *always justify simplicity*!
+]
+
+#slide(title: "Redshift")[
+  Need to know how to relate *emitted quantities* to *observed quantities*:
+  - *Key*: Liouville's Theorem: #h(1em) $I_"obs" (E_"obs") = g^3 I_"em" (E_"em")$ #h(1em) #text(size: 15pt)[(phase-space density is constant)]
+  - Define the *redshift*:
+  #grid(columns: (50%, 1fr),
+  [
+    $
+    g := E_"em" / E_"obs" = (bold(u)_"disc" dot bold(k)_"final") / (bold(u)_"obs" dot bold(k)_"initial"),
+    $
+  ],
+  [
+    Intuition: $E prop m v^2 = p v$
+  ])
+
+  #v(-0.7em)
+  #{
+    set text(size: 15pt)
+    figure(
+      image("./figs/redshift.png", width:90%),
+      gap: -5pt,
+      caption: [Redshift maps with contours.]
+    )
+  }
+
+  #v(10pt)
+  // todo some figures of redshift maps
+  #align(center, text()[
+    ```julia
+    pf = ConstPointFunctions.redshift(m, observer) ∘ filter_intersected()
+    ```
+  ])
+  #v(10pt)
+
+  Sources of redshift: *Doppler*, *special relativity*, *gravitational redshift*
+  #v(5pt)
+  #align(center, cbox(fill: PRIMARY_COLOR, text(fill: SECONDARY_COLOR)[
+    *All redshift sources* are accounted for in a *single equation*.
+  ]))
+]
+
+#slide(title: "The observer changes how the disc is seen")[
+  #{
+    set text(size: 15pt)
+    figure(
+      image("./figs/redshift-grid.png", width: 86%),
+      gap: -5pt,
+      caption: [TODO]
+    )
+  }
 ]
 
 #slide(title: "Page & Thorne")[
-  A "simple" model for *temperature* and *flux* from a *Novikov-Thorne* accretion disc.
-  - an example of how we can calculate the flux of the disc at different radii
-  using a black body emission model
+  A "simple" model for *temperature* and *flux* for a *Novikov-Thorne* accretion disc:
+  $
+  T ~ (F / sigma_"B")^(1\/4), #h(3em) F ~ #h(-0.8em) underbrace(lr(angle.l q^z angle.r) #h(5pt) r^(-1), #text()[Avg *radiation* in\  vertical direction per $r$]) #h(-0.8em) ~ r^(-3)
+  $
+
+  #{
+    set text(size: 15pt)
+    set align(center)
+    move(dx: -10pt, grid(columns: (55%, 1fr),
+      move(dy: -30pt, figure(
+        image("./figs/temperature-maps.png", width: 85%),
+        gap: 0pt,
+        caption: [TODO]
+      )),
+      figure(
+        image("./figs/page-thorne.svg", width: 85%),
+        gap: 0pt,
+        caption: [TODO]
+      ),
+    ))
+  }
+
+  These are the first steps to models like `kerrbb` Li et al.
 ]
 
 #subtitle-slide(bg: TEXT_COLOR)[
   #set text(size: 15pt)
   #figure(
     image("./figs/our-version-of-luminet.png"),
-    caption: [Schwarzschild black hole with Page & Thorne accretion disc,\ after J-P. Luminet, 2024],
+    caption: text(weight:"regular")[Schwarzschild black hole with Page & Thorne accretion disc,\ after J-P. Luminet, 2024],
   )
 
   // the titular bright side of a black hole
@@ -451,11 +536,59 @@
   // mention something about light crossing time
 ]
 
-#slide(title: "Reflected emission")[
-  - the corona changes the emissivity of the disc
+#slide(title: "The corona changes the emissivity of the disc")[
+  #grid(
+    columns: (45%, 1fr),
+    [
+        #v(2em)
+        #set align(center)
+        #animsvg(
+          read("./figs/corona-heights.svg"),
+          (i, im) => only(i)[
+            #image.decode(im, width: 80%)
+          ],
+          (hide: ("g114", "g115", "g116-3")),
+          (display: ("g116-3",)),
+          (display: ("g115",)),
+          (display: ("g114",)),
+          (),
+          handout: HANDOUT_MODE,
+        )
+        #v(1em)
+    ],
+    [
+      #v(1em)
+        #animsvg(
+          read("./figs/emissivity-heights.svg"),
+          (i, im) => only(i)[
+            #image.decode(im, width: 100%)
+          ],
+          (hide: ("g370", "g371", "g372", "g373", "g374", "g375", "g227", "g312")),
+          (display: ("g372",)),
+          (display: ("g371",)),
+          (display: ("g370", "g369")),
+          // (display: ("g373", "g374", "g375", "g227", "g312")),
+          (),
+          handout: HANDOUT_MODE,
+        )
+    ],
+  )
+  #v(1em)
+  #uncover("4-")[
+    Emissivities are sensitive to the *geometry of the corona* (Gonzalez et al., 2017).
+  ]
+  #v(0.5em)
+  #uncover("5-")[
+  Observe *steep emissivity profile* (e.g. Fabian et al., 2004)
+  - Can be fitted by the *lamp post* model (e.g. Wilkins & Fabian, 2012)
+  ]
 ]
 
 #slide(title: "Lineprofile calculations")[
+  #align(center)[
+    #image("./figs/building-reflection-profiles.svg", width: 100%)
+  ]
+
   Use the redshift maps together with the emissivity functions; no longer consider a single photon, but a bundle -- need Liouville's theorem
 
   Sensitive to parameters of the corona through the emissivity
@@ -464,25 +597,135 @@
 ]
 
 #slide(title: "4. Detour: disc models")[
-  We've so far only used an infinitely thin accretion disc
-  not physical
+  // TODO: references for all of this
+  In computational models, use *infinitely thin* disc.
+  #text(size: 20pt)[
+  - But... standard *theoretical models* have some vertical *height* that scales with *accretion rate* (Shakura-Sunyaev model)
+  - Thin disc applies for "cold" discs
+  - *Magnetically supported* discs or *hot discs* will *puff up*
+  ]
 
-  next best thing is to use the shakura sunyaev disc models
-  - *any scale height in the disc* will introduce *obscuration effects* at steep enough inclinations
+  Implications for geometry, and therefore *ray-tracing results*:
+  // disc cools faster than the dynamical timescale: all heat radiated away
+  #{
+    set text(size: 15pt)
+    figure(
+      image("./figs/disc-paramterisation.svg", width: 100%),
+      gap: -20pt,
+      caption: [],
+    )
+  }
+  Leads to *obscuration effects* at certain observer inclinations.
+  Already in the literature, Taylor and Reynolds in particular
+  //  - We're trying to make it easy to compute the transfer function tables
+  //  needed for arbitrary thick discs: it can be really important in hidden
+  //  little corners of your parameter spaces
+]
+
+#slide(title: "Thick discs and the line profile")[
+  *Obscuration* effects prominent at $theta_"obs" gt.tilde 60 degree$:
+
+  But even at low inclination, lampposts model *"sees" the disc differently*, changing the *emissivity of the disc*:
+
+  #v(1fr)
+  #align(center, cbox(fill: PRIMARY_COLOR, width: 90%, text(fill: SECONDARY_COLOR)[
+    *Disc thickness* can have *strong effects* from geometry alone!
+  ]))
 ]
 
 #slide(title: "5. Reverberation lags")[
+  #let im_lamppost = read("figs/lamp-post-explanation.svg")
+  #align(center)[
+    #animsvg(
+      im_lamppost,
+      (i, im) => only(i)[
+        #image.decode(im, width: 60%)
+      ],
+      (),
+      (hide: ("g75", "g49")),
+      (hide: ("g1",)),
+      (display: ("g5",)),
+      (hide: ("g6", "g2"), display: ("g7",)),
+      (display: ("g73", "g72", "g4")),
+      (display: ("path63", "g3")),
+      handout: HANDOUT_MODE,
+    )
+  ]
 
+  *Time delay* between the *reflected* and *continuum* components
+  - *High-frequency, short lags*, softer energies behind harder energies
+  \
+  For posterity: not the only types of lags seen (e.g. also low-frequency, long lags)
+  - Propagating fluctuations in accretion disc TODO: ref
+]
+
+#slide(title: "Reverberation transfer functions")[
+  Use the *lineprofile flux* along with the *photon travel times*:
+
+  #v(1em)
+  #{
+    set text(size: 15pt)
+    grid(
+      columns: (33%, 33%, 1fr),
+      column-gutter: -5pt,
+      [
+        // TODO: make this flux not redshift
+        #figure(
+          image("./figs/apparent-image.png", width: 100%),
+          caption: [TODO]
+        )
+      ],
+      [
+        #figure(
+          image("./figs/apparent-image-arrival.png", width: 100%),
+          caption: [TODO],
+        )
+      ],
+      [
+        #figure(
+          move(dx: -0.5em, image("./figs/apparent-image-transfer.png", width: 94%)),
+          caption: [TODO],
+        )
+      ]
+    )
+  }
+  \
+  Depends on properties of the *disc*, *corona* and location of the *observer*.
+]
+
+
+#slide(title: "Lags as a phase shift")[
+  #{
+    set text(size: 15pt)
+    figure(
+      image("./figs/impulse-reverb.svg", height: 75%),
+      caption: []
+    )
+  }
+]
+
+#slide(title: "Lags as a function of energy")[
+]
+
+#slide(title: "Disc thickness and lags")[
+  Similar as to *lineprofiles*: obscuration will cut-off the lag:
+]
+
+#slide(title: "Tall disc, shallow corona")[
+  Can dramatically reduce the lag if the *corona becomes embedded* in the disc:
 ]
 
 #slide(title: "6. Beyond the lamppost model")[
+
 ]
 
-#slide(title: "6. Going further")[
+#slide(title: "7. Going further")[
+  // what we didn't speak about today: reflection spectra
+  // folding instrument response
+  // - what polarisation can offer us
   what else can you do with GRRT
   - hot spots
   - precessing discs
-  - SED models
 
   We've only talked about optically thick discs, but one can include optically thin ones too
   - radiative transfer
@@ -493,35 +736,40 @@
 // but we can't use them. Ray tracing also useful for spectral and timing
 // calculations
 
-#slide(title: "Thank you")[
+#slide(title: align(center)[Thank you], background: PRIMARY_COLOR, foreground: SECONDARY_COLOR, accent: PRIMARY_COLOR)[
+  #set text(fill: SECONDARY_COLOR)
     #v(1em)
   #align(center)[
-  #cbox(fill: PRIMARY_COLOR, width: 90%, text(fill: SECONDARY_COLOR)[
-    == Summary
-    #align(left)[
-      Gradus.jl can efficiently compute *extended cornae*
-      - Construct models that are *performant enough* for parameter fitting
-      #v(0.5em)
-      *Extended coronae* have *time-dependent* emissivity profiles
-      - Timescale of variations on the order of 10s of $t_"g"$
-      - Disk-like coronae increase reflection spectrum flux around $E\/E_0 = 1$
+    #block(width: 90%)[
+      == Summary
+      #align(left)[
+        Gradus.jl can efficiently compute *extended cornae*
+        - Construct models that are *performant enough* for parameter fitting
+        #v(0.5em)
+        *Extended coronae* have *time-dependent* emissivity profiles
+        - Timescale of variations on the order of 10s of $t_"g"$
+        - Disk-like coronae increase reflection spectrum flux around $E\/E_0 = 1$
+      ]
     ]
-  ])
   ]
   #v(1em)
   #set text(size: 18pt)
-  Gradus.jl source code (GPL-3.0):
-  - https://github.com/astro-group-bristol/Gradus.jl
-  #v(0.5em)
-  Documentation:
-  - https://astro-group-bristol.github.io/Gradus.jl/
-  #v(0.5em)
-  Source for slides and figures:
-  - https://github.com/fjebaker/newcastle-2024
-  #v(0.5em)
-  #align(right)[
-  Contact: \
-  #link("fergus.baker@bristol.ac.uk")
+
+  #cbox(fill: SECONDARY_COLOR, width: 100%)[
+    #set text(fill: TEXT_COLOR)
+    Gradus.jl source code (GPL-3.0):
+    - #link("https://github.com/astro-group-bristol/Gradus.jl")
+    #v(0.5em)
+    Documentation:
+    - #link("https://astro-group-bristol.github.io/Gradus.jl/")
+    #v(0.5em)
+    Source for slides and figures:
+    - #link("https://github.com/fjebaker/newcastle-2024")
+    #v(0.5em)
+    #align(right)[
+    Contact: \
+    #link("fergus.baker@bristol.ac.uk")
+    ]
   ]
 
 ]

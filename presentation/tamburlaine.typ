@@ -83,7 +83,7 @@
 }
 
 
-#let slide(foreground: TEXT_COLOR, background: SECONDARY_COLOR, title: none, body) = {
+#let slide(accent: PRIMARY_COLOR, foreground: TEXT_COLOR, background: SECONDARY_COLOR, title: none, body) = {
   set page(
     fill: background,
     margin: (bottom: 1.5em)
@@ -91,7 +91,7 @@
 
   let footer = locate( loc => {
     block(
-      stroke: ( top: 1mm + PRIMARY_COLOR ), width: 100%, inset: ( y: .5em ),
+      stroke: ( top: 1mm + accent ), width: 100%, inset: ( y: .5em ),
       text(fill: foreground, .5em, {
         "CC BY-NC-SA 4.0 Fergus Baker"
         h(2em)
@@ -115,7 +115,7 @@
   )
 
   let content = {
-    block(outset: (top: 0.8em, left: 0.8em, right: 0.8em), inset: (bottom: 0.8em), width: 100%, fill: PRIMARY_COLOR, spacing: 0.8em, par(leading: 10pt, text(fill: SECONDARY_COLOR, size: 50pt, weight: "black", title)))
+    block(outset: (top: 0.8em, left: 0.8em, right: 0.8em), inset: (bottom: 0.8em), width: 100%, fill: accent, spacing: 0.8em, par(leading: 10pt, text(fill: SECONDARY_COLOR, size: 50pt, weight: "black", title)))
     body
     v(20pt)
   }
