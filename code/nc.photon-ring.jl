@@ -44,7 +44,7 @@ begin
     plot_solutions!(ax, sols, linewidth = 3.0)
 
     sols = calculate_geodesics(m, α = -collect(2:2:8))
-    plot_solutions!(ax, sols)
+    plot_solutions!(ax, sols, color = :black)
 
 
     Makie.xlims!(ax, -7, 14.0)
@@ -55,6 +55,53 @@ begin
 
     colgap!(ga, 0)
 
-    # Makie.save("presentation/figs/photon-ring-paths.svg", fig)
+    Makie.save("presentation/figs/photon-ring-paths.svg", fig)
+    fig
+end
+
+
+function ringfo(m;
+    αlims = (-8, 8),
+    βlims = (-8, 8),
+    )
+    x = SVector(0.0, 1_000_000.0, deg2rad(10), 0.0)
+    pf = PointFunction( (m, gp, t) -> gp.aux.winding) ∘ 
+        FilterPointFunction((m, gp, t) -> gp.aux.winding > 1, NaN)
+    a,b,img = @time rendergeodesics(
+        m,
+        x,
+        2x[2],
+        αlims = αlims,
+        βlims = βlims,
+        trace = TraceWindings(),
+        chart = Gradus.chart_for_metric(m, 2x[2]),
+        image_width = 800,
+        image_height = 800,
+        verbose = true,
+        pf = pf
+    )
+end
+
+d1 = ringfo(m)
+d2 = ringfo(m, αlims = (1.96, 2.04), βlims = (-4.85, -4.75))
+
+extrema(filter(!isnan, d1[3]))
+
+begin
+    fig = Figure(size = (400, 400))
+    ax1 = Axis(fig[1,1], aspect = DataAspect(), xlabel = "α", ylabel = "β", title = "Schwarzschild")
+    ax2 = Axis(fig[1,1], aspect = DataAspect(), width = Relative(0.3), height = Relative(0.4), halign = 0.6, valign = 0.6)
+    # hidedecorations!(ax2)
+
+    # hideydecorations!(ax2, grid=false)
+    contourf!(ax1, d1[1], d1[2], d1[3]', colormap = :batlow)
+    contourf!(ax2, d2[1], d2[2], d2[3]', colormap = :batlow)
+
+    poly!(ax1, [(1.96, -4.85), (1.96, -4.75), (2.04, -4.75), (2.04, -4.85)], color = :red)
+
+    xlims!(ax1, -6.4, 6.4)
+    ylims!(ax1, -6.8, 6.3)
+
+    Makie.save("presentation/figs/raw/photon-ring-schwarzschild.svg", fig)
     fig
 end
