@@ -5,34 +5,9 @@
    viewBox="0 0 500.48999 338.54349"
    version="1.1"
    id="svg71"
-   sodipodi:docname="lamp-post.traces-export.svg"
-   inkscape:export-filename="temp.svg"
-   inkscape:export-xdpi="96"
-   inkscape:export-ydpi="96"
-   inkscape:version="1.3.2 (091e20ef0f, 2023-11-25, custom)"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
-  <sodipodi:namedview
-     id="namedview1"
-     pagecolor="#ffffff"
-     bordercolor="#000000"
-     borderopacity="0.25"
-     inkscape:showpageshadow="2"
-     inkscape:pageopacity="0.0"
-     inkscape:pagecheckerboard="0"
-     inkscape:deskcolor="#d1d1d1"
-     inkscape:zoom="2.8681378"
-     inkscape:cx="313.4438"
-     inkscape:cy="130.04954"
-     inkscape:window-width="1904"
-     inkscape:window-height="1018"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
-     inkscape:window-maximized="0"
-     inkscape:current-layer="g88" />
   <g
      id="g88"
      clip-path="none"
@@ -40,7 +15,7 @@
      style="display:inline">
     <g
        id="g87"
-       style="display:none">
+       style="display:inline">
       <rect
          style="fill:none;stroke:none;stroke-width:2.561;stroke-miterlimit:2;stroke-dasharray:none;paint-order:markers fill stroke"
          id="rect87"
@@ -58,7 +33,7 @@
     <g
        id="g5"
        transform="translate(87.271182,-230.78187)"
-       style="display:none">
+       style="display:inline">
       <path
          fill="none"
          stroke-width="1.5"
@@ -69,11 +44,10 @@
          stroke-miterlimit="2"
          d="m 110.99643,549.77935 c -21.604259,-5.58444 -43.146752,-11.55831 -65.110039,-15.59377 -14.734257,-2.52569 -30.388132,-4.14122 -44.753236,1.04758 -10.4390449,3.64965 -19.550514,12.10429 -22.160181,23.08582 -0.48644,1.9094 -1.021494,5.02668 -1.163892,6.99145"
          id="path48-1"
-         sodipodi:nodetypes="ccccc"
-         style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#e69f00;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1" />
+         style="font-variation-settings:normal;display:inline;opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#e69f00;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1" />
       <g
          id="g6"
-         style="display:inline">
+         style="display:none">
         <path
            fill="none"
            stroke-width="1.5"
@@ -602,7 +576,7 @@
            clip-path="none"
            id="g47"
            transform="translate(-61.675439,231.36529)"
-           style="display:inline">
+           style="display:none">
           <path
              fill="none"
              stroke-width="1.5"
@@ -618,7 +592,7 @@
     </g>
     <g
        id="g75"
-       style="display:inline"
+       style="display:none"
        transform="translate(27.419812,1.482152)">
       <path
          fill="none"
@@ -629,7 +603,8 @@
          stroke-opacity="1"
          stroke-miterlimit="2"
          d="m 66,273.60156 c -0.0076,17.0207 0.02977,34.04236 -0.0078,51.06247"
-         id="path11" />
+         id="path11"
+         style="display:inline" />
       <path
          fill="none"
          stroke-width="1.5"
@@ -639,7 +614,8 @@
          stroke-opacity="1"
          stroke-miterlimit="2"
          d="m 66,273.60156 c 1.200982,13.16336 2.585078,26.31236 3.490355,39.49941 0.05624,2.91376 0.549481,6.00606 -0.583035,8.77942 -1.310595,2.50462 -4.473047,2.66746 -6.910166,3.253 -0.256608,0.17827 0.446931,0.0926 0.519533,0.1601"
-         id="path12" />
+         id="path12"
+         style="display:inline" />
       <path
          fill="none"
          stroke-width="1.5"
@@ -649,7 +625,8 @@
          stroke-opacity="1"
          stroke-miterlimit="2"
          d="m 66,273.60156 c 2.299184,12.33042 4.790165,24.63054 6.62996,37.04325 0.38868,3.58637 1.130951,7.31636 0.13643,10.86498 -0.954528,3.01057 -4.351013,3.96435 -7.113287,4.49912 -2.471271,0.55592 -5.068906,0.59317 -7.511719,1.1323 0.442708,0.0312 0.885417,0.0625 1.328125,0.0937"
-         id="path13" />
+         id="path13"
+         style="display:inline" />
       <path
          fill="none"
          stroke-width="1.5"
@@ -669,7 +646,8 @@
          stroke-opacity="1"
          stroke-miterlimit="2"
          d="m 66,273.60156 c 4.279847,11.1063 8.739068,22.17046 12.136194,33.58995 1.430214,5.27212 2.948694,10.77846 2.0875,16.27805 -0.502271,3.57782 -3.175387,6.51922 -6.479512,7.82161 -6.554596,2.6946 -13.755859,2.8639 -20.693926,3.76996 0.620087,0.38355 2.063217,0.14049 3.001693,0.28165 0.180424,0.008 0.360848,0.0154 0.541272,0.023"
-         id="path15" />
+         id="path15"
+         style="display:inline" />
       <path
          fill="none"
          stroke-width="1.5"
@@ -689,7 +667,8 @@
          stroke-opacity="1"
          stroke-miterlimit="2"
          d="m 66,273.60156 c 6.371956,10.4993 12.858527,21.00712 17.636368,32.35415 2.997799,7.38909 5.353946,15.54497 3.687445,23.54687 -1.227568,6.20443 -5.632868,11.47547 -11.238286,14.27344 -5.766569,3.04174 -12.331974,3.91478 -18.726563,4.60518 0.382618,0.22702 1.917723,0.10388 2.732772,0.1581 0.861212,0.01 1.722423,0.0197 2.583634,0.0295"
-         id="path17" />
+         id="path17"
+         style="display:inline" />
     </g>
     <g
        id="g74"
@@ -708,7 +687,7 @@
          style="display:inline" />
       <g
          id="g1"
-         style="display:inline">
+         style="display:none">
         <path
            fill="none"
            stroke-width="1.5"
@@ -866,7 +845,7 @@
     <g
        clip-path="none"
        id="g49"
-       style="display:inline"
+       style="display:none"
        transform="translate(27.419812,1.482152)">
       <path
          fill="none"
@@ -1042,7 +1021,7 @@
     </g>
     <g
        id="g72"
-       style="display:none"
+       style="display:inline"
        transform="translate(27.419812,1.482152)">
       <g
          id="g2"
@@ -1182,7 +1161,7 @@
     </g>
     <g
        id="g73"
-       style="display:none"
+       style="display:inline"
        transform="translate(27.419812,1.482152)">
       <path
          fill="none"
@@ -1239,7 +1218,7 @@
        stroke-miterlimit="2"
        d="M 470.22855,75.638402 C 361.18027,132.59056 251.80308,188.91651 143.0684,246.46653 c -16.8405,9.12411 -33.75098,18.20288 -49.75796,28.75"
        id="path63"
-       style="font-variation-settings:normal;display:none;opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#0072b2;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1" />
+       style="font-variation-settings:normal;display:inline;opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#0072b2;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1" />
     <g
        id="g76"
        style="display:inline;fill:url(#pattern87);fill-opacity:1"
@@ -1278,7 +1257,7 @@
       </g>
     </g>
     <circle
-       style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;paint-order:markers fill stroke"
+       style="font-variation-settings:normal;display:inline;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;paint-order:markers fill stroke"
        id="path2"
        cx="93.418671"
        cy="275.25336"
@@ -1286,14 +1265,13 @@
     <g
        id="g4"
        transform="translate(27.419812,1.482152)"
-       style="display:none">
+       style="display:inline">
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:0;font-family:Sans;-inkscape-font-specification:Sans;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:normal;display:inline;vector-effect:none;fill:#d55e00;fill-opacity:0.964706;stroke:#d55e00;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;paint-order:markers fill stroke;stop-color:#000000"
          x="307.80331"
          y="210.41626"
          id="text2-5"><tspan
-           sodipodi:role="line"
            id="tspan2-4"
            x="307.80331"
            y="210.41626">Reflected</tspan></text>
@@ -1301,28 +1279,26 @@
     <g
        id="g3"
        transform="translate(27.419812,1.482152)"
-       style="display:none">
+       style="display:inline">
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:0;font-family:Sans;-inkscape-font-specification:Sans;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:normal;display:inline;vector-effect:none;fill:#0072b2;fill-opacity:1;stroke:#0072b2;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;paint-order:markers fill stroke;stop-color:#000000"
          x="183.90967"
          y="155.59007"
          id="text2-5-9"><tspan
-           sodipodi:role="line"
            id="tspan2-4-2"
            x="183.90967"
            y="155.59007">Continuum</tspan></text>
     </g>
     <g
        id="g7"
-       style="display:none;fill:#e69f00;fill-opacity:1;stroke:#e69f00;stroke-opacity:1">
+       style="display:inline;fill:#e69f00;fill-opacity:1;stroke:#e69f00;stroke-opacity:1">
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:0;font-family:Sans;-inkscape-font-specification:Sans;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:normal;display:inline;vector-effect:none;fill:#e69f00;fill-opacity:1;stroke:#e69f00;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;paint-order:markers fill stroke;stop-color:#000000"
          x="19.612988"
          y="297.34335"
          id="text2-5-9-9"><tspan
-           sodipodi:role="line"
            id="tspan2-4-2-3"
            x="19.612988"
            y="297.34335">Returning</tspan></text>

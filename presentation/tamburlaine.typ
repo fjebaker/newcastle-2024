@@ -162,17 +162,16 @@
   }
 }
 
-#let only-last-handout(..blocks, fig: false, handout: false) = {
+#let only-last-handout(..blocks, fig: false, handout: false, fig-num: 1) = {
   if handout == true {
     blocks.at(-1)
   } else {
     let output = ()
     context {
-      let fig_count = counter(figure).get().last()
+      counter(figure).update(fig-num)
       for blk in blocks.pos().enumerate() {
          let (i, b) = blk
          [
-           #counter(figure).update(fig_count)
            #only(i+1, b)
          ]
       }

@@ -1,6 +1,6 @@
 #import "tamburlaine.typ": *
 
-#let HANDOUT_MODE = true
+#let HANDOUT_MODE = false
 #enable-handout-mode(HANDOUT_MODE)
 
 #show figure.caption: c => block(width: 80%)[
@@ -40,9 +40,13 @@
 #slide(title: "Take home messages")[
   #text(size: 40pt)[
     #v(2em)
+    #uncover("2-")[
     1. Including *general relativistic* effects is _easier_ than you'd think #text(size: 28pt)[_thanks to ray-tracing_].
+  ]
     \
+    #uncover("3-")[
     2. We need to move past the simple black hole *accretion disc* and *corona models*.
+  ]
   ]
 
 ]
@@ -85,30 +89,50 @@
 #slide(title: "0. Black holes for the initiated")[
   Why are *black holes* important / why study them?
   #set text(size: 18pt)
+  #uncover("2-")[
   - Because they are _really cool!_
+  ]
   \
   #grid(columns: (50%, 1fr),
     [
+    #uncover("3-")[
     For (EM) astronomers, generally *classify two\* types* of black holes:
-    1. Active Galactic Nuclei (*AGN*)
-    2. Black hole binaries (*BHB*)
-    3. \*Merging / systems of black holes, primordial / micro / rogue black holes
-    \
+    ]
+    #uncover("4-")[
+      \
+      - Active Galactic Nuclei (*AGN*)
+    ]
+    #uncover("5-")[
+      \
+      #v(-1em)
+      - Black hole binaries (*BHB*)
+    ]
+    #uncover("6-")[
+      \
+      #v(-1em)
+      - \*Merging / systems of black holes, primordial / micro / rogue black holes
+    ]
+    #v(10pt)
+    #uncover("7-")[
     Except for two notable exceptions, *cannot resolve the systems*
     - Characteristic scale is $r_g = (G M) / c^2$, so for 1\" at 1pc would need $10^9 M_dot.circle$
     - M87\* is $10^9 M_dot.circle$ but at $D approx$ 16 Mpc
     - Closest is Gaia BH1 at \~ 470 pc and \~ 1 $M_dot.circle$
+    ]
 
     #v(1fr)
+    #uncover("8-")[
     #align(center, cbox(fill: PRIMARY_COLOR, text(fill: SECONDARY_COLOR)[
       Today: ideas apply to *any black hole* \
       #text(size: 15pt)[(not enough time to go into discriminating details)]
     ]))
+    ]
     #v(30pt)
     ],
     [
       #set align(center)
       #set text(size: 11pt)
+      #uncover("4-")[
       #move(
         dy: -50pt,
         figure(
@@ -116,6 +140,8 @@
           caption: [NGC4151 by #link("https://en.wikipedia.org/wiki/NGC_4151#/media/File:NGC4151_Galaxy_from_the_Mount_Lemmon_SkyCenter_Schulman_Telescope_courtesy_Adam_Block.jpg")[Adam Block/Mount Lemmon SkyCenter/\ University of Arizona], CC BY-SA 4.0],
         )
       )
+      ]
+      #uncover("5-")[
       #move(
         dy: -30pt,
         figure(
@@ -123,6 +149,7 @@
           caption: [Gaia BH1 by #link("https://en.wikipedia.org/wiki/Gaia_BH1#/media/File:Gaia_BH1_PanSTARRS.jpg")[Meli thev], CC BY-SA 4.0],
         )
       )
+      ]
     ]
   )
 ]
@@ -176,18 +203,24 @@
   - Photons follow *geodesics* (shortest path between two points)
   - In curved space, not *Euclidean straight lines*
   \
+  #uncover("2-")[
   *Geodesic equation:*
 
   #let hl(t) = text(fill: PRIMARY_COLOR, t)
   $
   (partial^2 x^mu) / (partial tau^2) &= - Gamma^mu_(nu sigma) (partial x^nu) / (partial tau) (partial x^sigma) / (partial tau), \
-  #hl[$m underbrace(#text(fill: TEXT_COLOR)[$(partial^2 x^mu) / (partial tau^2)$], a)$] &= #hl[F].
+  #uncover("3-")[$#hl[$m underbrace(#text(fill: TEXT_COLOR)[$(partial^2 x^mu) / (partial tau^2)$], a)$] &= #hl[F]$]
   $
+  ]
 
+  #uncover("4-")[
   *Curvature* acts as to *impart a force*, deviating trajectories from Euclidean straight paths:
   - We call this force *gravity*.
+  ]
   \
+  #uncover("5-")[
   Curvature term $Gamma^mu_(nu sigma)$ is a function *only of the metric*, $g_(mu nu)$, which depends on the distribution of matter.
+  ]
 ]
 
 
@@ -209,8 +242,11 @@
 
   #block[
     #align(left, text(size: 30pt, weight:"regular")[
+      #uncover("2-")[
       #quote[The black holes of nature are the *most perfect macroscopic objects* in the universe \[...\]. And since the general theory of relativity provides only a single unique family of solutions \[...\], they are the *simplest objects* as well.]
+
       #align(right, [-- S. Chandrasekhar\ #text(size: 18pt)[prologue to The Mathematical Theory of Black Holes]])
+      ]
     ])
   ]
 ]
@@ -264,6 +300,8 @@
         For each geodesic: pick an *initial position* and *initial velocity*:
       ]
 
+      #uncover("3-")[
+
       #v(2em)
       #figure(
         image("./figs/geodesic-paths.svg", width: 100%),
@@ -274,9 +312,11 @@
       #text(size: 20pt)[
         To make an image, *stack slices* of impact parameters together
       ]
+      ]
     ],
     [
       #v(-5pt)
+      #uncover("2-")[
       ```julia
       using Gradus
       # 1. Flat
@@ -310,6 +350,7 @@
         20_000,
       )
       ```
+      ]
     ]
   )
 ]
@@ -411,17 +452,20 @@
 #slide(title: "Redshift")[
   Need to know how to relate *emitted quantities* to *observed quantities*:
   - *Key*: Reciprocity Theorem: #h(1em) $I_"obs" (E_"obs") = g^3 I_"em" (E_"em")$ #h(1em) #text(size: 15pt)[(phase-space density is invariant)]
-  - Calculate the *redshift*:
+  #uncover("2-")[
+  Calculate the *redshift*:
   #grid(columns: (50%, 1fr),
   [
     $
-    g := E_"em" / E_"obs" = (bold(u)_"disc" dot bold(k)_"final") / (bold(u)_"obs" dot bold(k)_"initial"),
+    g := E_"obs" / E_"em" = (bold(u)_"obs" dot bold(k)_"initial") / (bold(u)_"disc" dot bold(k)_"final"),
     $
   ],
   [
     Intuition: $E prop m v^2 = p v$
   ])
+  ]
 
+  #uncover("3-")[
   #v(-0.7em)
   #{
     set text(size: 15pt)
@@ -442,10 +486,7 @@
   #v(10pt)
 
   Sources of redshift: *Doppler*, *special relativity*, *gravitational redshift*
-  #v(5pt)
-  #align(center, cbox(fill: PRIMARY_COLOR, text(fill: SECONDARY_COLOR)[
-    *All redshift sources* are accounted for in a *single equation*.
-  ]))
+  ]
 ]
 
 #slide(title: "The observer changes how the disc is seen")[
@@ -470,6 +511,8 @@
 // - Now we have a temperature model that includes all relativistic effects
 //
 // First steps towards multitemperature black body models
+//
+// alternatively, just map the flux onto the projection
 #slide(title: "Page & Thorne")[
   Use *redshift* to relate *emitted and observed* quantities:
   - A "simple" model for *flux* and *temperature*:
@@ -483,20 +526,25 @@
     set text(size: 15pt)
     set align(center)
     move(dx: -10pt, grid(columns: (45%, 1fr),
-      figure(
-        image("./figs/page-thorne.svg", width: 85%),
-        gap: 0pt,
-        caption: [*Temperature* of the accretion disc.]
-      ),
-      move(dy: -30pt, figure(
+      uncover("2-")[
+        #figure(
+          image("./figs/page-thorne.svg", width: 85%),
+          gap: 0pt,
+          caption: [*Temperature* of the accretion disc.]
+        )
+      ],
+      uncover("3-")[
+        #move(dy: -30pt, figure(
         image("./figs/temperature-maps.png", width: 85%),
-        gap: 0pt,
-        caption: [Projection of the *temperature* on the accretion disc.]
-      )),
+          gap: 0pt,
+          caption: [Projection of the *temperature* on the accretion disc.]
+        ))
+      ],
     ))
   }
-
-  These are the first steps to models like `kerrbb` Li et al.
+  #uncover("4-")[
+  These are the first steps to models like `kerrbb` (Li et al., 2005)
+  ]
 ]
 
 // Hopefully you now understand how all of the different features arrive
@@ -530,17 +578,22 @@
   We have our basic *accretion disc model*, and now we want to add *the corona*.
   - Source of hard X-rays (Fabian et al., 2000)
   #v(1em)
+
+  #uncover("2-")[
   The *corona* is a hot ($T ~ 10^9$K) electron plasma in the vicinity of the black hole
-  - Geometry and conditions are still debated (see TODO for review)
+  - Geometry and conditions are still debated
   - Thought to be formed through threaded *magnetic fields*
   - Maybe the base of a jet? (synchrotron self-Compton, Markoff et al., 2005)
   - *Heated accretion disc layers* that form a *large warm corona* (e.g. sandwhich model, Paczynski 1978)
+  ]
 
   #v(1em)
+  #uncover("3-")[
   Importantly: changes how the disc would be 'seen'
   - Illuminates the accretion system system in high energy X-rays
   - *Compton-upscattering* of softer *seed photons*
   - Implying some connection between the disc and the corona
+  ]
 ]
 
 
@@ -554,10 +607,14 @@
   #grid(columns: (60%, 1fr),
     {
       set align(horizon)
-      only-last-handout(
+      only-last-handout(fig-num: 37,
         figure(
           image("./figs/lp-2.png", width: 95%),
           caption: [A literal lamppost corona.]
+        ),
+        figure(
+          image("./figs/lp-3.png", width: 95%),
+          caption: [A literal lamppost corona is observed *together* with the disc.]
         ),
         figure(
           image("./figs/lp-3.png", width: 95%),
@@ -575,11 +632,16 @@
       Two model components:
       - Hard *direct emission* from the corona
       - Softer *reflected emission* from the disc
+      #uncover("2-")[
+        \
       - Can only be *observed in ensemble*
+      ]
 
       #v(1em)
+      #uncover("3-")[
       But...
       - Spectra can be *modelled independently*
+      ]
     ]
   )
   // mention something about light crossing time
@@ -630,7 +692,7 @@
     ],
   )
   #v(1em)
-  #uncover("4-")[
+  #uncover("5-")[
     Emissivities are sensitive to the *geometry of the corona* (Gonzalez et al., 2017).
   ]
 ]
@@ -654,12 +716,13 @@
   ]
 
   #v(1em)
+  #uncover("2-")[
+  #v(0.5em)
+  #align(right)[Excellent method for probing various components]
   Sensitive to *parameters of the corona* through the emissivity
   - Sensitive to *parameters of the spacetime* through the GR effects
   - Sensitive to the *parameters of the disc*, i.e. inner and outer radius, but also...
-
-  #v(0.5em)
-  #align(right)[Excellent method for probing various components]
+  ]
 ]
 
 // - furthermore, thin disc only applies for cold discs
@@ -679,6 +742,7 @@
   - A *hot* or *magnetically supported* discs will *puff up*
   ]
 
+  #uncover("2-")[
   Implications for geometry, and therefore *ray-tracing results*:
   // disc cools faster than the dynamical timescale: all heat radiated away
   #{
@@ -689,8 +753,12 @@
       caption: [Contours of *radius* and *normalised redshift* for a thin and thick accretion disc.],
     )
   }
+  ]
+
+  #uncover("3-")[
   Leads to *obscuration effects* at certain observer inclinations.
-  - Taylor and Reynolds
+  - Taylor and Reynolds (2018a, 2018b)
+  ]
   //  - We're trying to make it easy to compute the transfer function tables
   //  needed for arbitrary thick discs: it can be really important in hidden
   //  little corners of your parameter spaces
@@ -730,20 +798,7 @@
 #slide(title: "5. Reverberation lags")[
   #let im_lamppost = read("figs/lamp-post-explanation.svg")
   #align(center)[
-    #animsvg(
-      im_lamppost,
-      (i, im) => only(i)[
-        #image.decode(im, width: 60%)
-      ],
-      (),
-      (hide: ("g75", "g49")),
-      (hide: ("g1",)),
-      (display: ("g5",)),
-      (hide: ("g6", "g2"), display: ("g7",)),
-      (display: ("g73", "g72", "g4")),
-      (display: ("path63", "g3")),
-      handout: HANDOUT_MODE,
-    )
+    #image.decode(im_lamppost, width: 60%)
   ]
 
   #v(2em)
@@ -784,10 +839,10 @@
   }
   \
   Depends on properties of the *disc*, *corona* and location of the *observer*.
-  - Importantly, *lags* provide an approach to measure *mass of the black hole*
 ]
 
 
+// at different frequencies what is the lag
 #slide(title: "Lags as phase and energy")[
   #grid(columns: (40%, 1fr),
     {
@@ -849,12 +904,13 @@
       #align(center,
         figure(
           image("./figs/decomposition.svg", width: 88%),
-          caption:[],
+          caption:[Decomposition],
       ))
     ]
   )
 
   #v(1fr)
+  #uncover("2-")[
   #cbox(fill: PRIMARY_COLOR, width: 100%, text(fill: SECONDARY_COLOR)[
     Each ring *modelled by a single point source*. Totals are weighted sums: e.g. emissivity
     $
@@ -862,7 +918,7 @@
     $
     where $V(x)$ is the volume of the annulus in $(x, x + dif x)$.
   ])
-
+  ]
 ]
 
 #slide(title: "Time-dependent approach")[
@@ -877,7 +933,7 @@
     #animsvg(
       im_extendpost,
       (i, im) => only(i)[
-        #image.decode(im, width: 70%),
+        #image.decode(im, width: 70%)
       ],
       (),
       (hide: ("g126",), display: ("g142",)),
@@ -986,7 +1042,7 @@
       )
     },
     [
-
+      #uncover("2-")[
       #v(1em)
       #block(inset: (left: 10pt))[
         But the *direct component* has a transfer function now also:
@@ -998,18 +1054,26 @@
           caption: [Left: $theta_"obs" = 45 degree$, right: $theta_"obs" = 75 degree$],
         )
       }
+      ]
     ]
   )
 
   #grid(columns: (68%, 1fr),
     [
     #v(0.5em)
+    #uncover("3-")[
     Need a model for the *coronal velocity structure* (assume co-rotating?)
     \
+    ]
+    #uncover("4-")[
     Include *source fluctuations* (different annuli "flash" at
     different times)
+    ]
+    #uncover("5-")[
     - Does the *corona* obscure the *disc*?
+    ]
     ],
+    uncover("4-",
     move(dy: -30pt, dx: 15pt, {
       set align(right)
       set text(size: 14pt)
@@ -1017,7 +1081,7 @@
         image("./figs/source-propagation.svg", width: 78%),
         caption: [Source fluctuations]
       )
-    })
+    }))
   )
 
 ]
