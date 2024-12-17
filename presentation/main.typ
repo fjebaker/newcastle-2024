@@ -1,6 +1,6 @@
 #import "tamburlaine.typ": *
 
-#let HANDOUT_MODE = false
+#let HANDOUT_MODE = true
 #enable-handout-mode(HANDOUT_MODE)
 
 #show figure.caption: c => block(width: 80%)[
